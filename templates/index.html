@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharatanatyam AI Mudra Tutor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="app-container">
+        <header>
+            <h1>Bharatanatyam AI Mudra Tutor</h1>
+            <p>Show your hand — the AI will name your mudra in real time</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Camera View -->
+            <div class="viewport-container">
+                <video id="webcam-feed" autoplay playsinline></video>
+                <canvas id="canvas-overlay"></canvas>
+                <div id="loading-overlay" class="analyzing">Initializing AI...</div>
+            </div>
+
+            <!-- Detection Panel -->
+            <div class="feedback-panel">
+                <div class="detection-card">
+                    <div class="detection-label">Detected Mudra</div>
+                    <div id="detected-mudra-name">—</div>
+                    <div class="confidence-row">
+                        <span class="confidence-label">Confidence</span>
+                        <span id="confidence-value">—</span>
+                    </div>
+                </div>
+
+                <div id="status-badge" class="status-badge waiting">
+                    Waiting for hand...
+                </div>
+
+                <div class="info-box">
+                    <h3>How it works</h3>
+                    <ul>
+                        <li>Show your hand clearly to the camera.</li>
+                        <li>The AI detects your mudra automatically.</li>
+                        <li>The name updates in real time.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharatanatyam AI Mudra Tutor</title>
+    <!-- Cultural Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=5">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Background Texture -->
+    <div class="bg-texture"></div>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="gold-accent">✧</span> Natya<span class="gold-text">AI</span> <span class="gold-accent">✧</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('library') }}">Mudra Library</a>
+            <a href="{{ url_for('practice') }}" class="nav-btn">Start Practice</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Preserving Ancient Arts through Modern Intelligence</p>
+        <p class="small">A Bharatanatyam Mudra Recognition System</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Master the Ancient Art of <br><span class="gold-text">Bharatanatyam</span></h1>
+        <p class="subtitle">Real-time AI feedback for Asamyukta Hastas (Single-Hand Gestures)</p>
+        
+        <div class="hero-features">
+            <div class="feature-box">
+                <h3>50 Mudras</h3>
+                <p>Trained to recognize all classical gestures with high accuracy.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Vedic Meanings</h3>
+                <p>Learn the scriptural translations as you practice.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Voice Feedback</h3>
+                <p>Listen for confirmations without breaking your pose.</p>
+            </div>
+        </div>
+
+        <a href="{{ url_for('practice') }}" class="cta-button">Enter the Practice Studio</a>
+    </div>
+</div>
+{% endblock %}

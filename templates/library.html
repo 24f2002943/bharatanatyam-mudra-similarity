@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="library-container">
+    <div class="library-header">
+        <h2>Asamyukta Hastas</h2>
+        <p>The 28 Single-Hand Gestures of Bharatanatyam and their Meanings</p>
+    </div>
+
+    <div class="mudra-grid">
+        {% for mudra, meaning in mudras.items() %}
+        <div class="mudra-card">
+            <img src="{{ url_for('static', filename='images/mudras/' ~ mudra ~ '.jpg') }}" alt="{{ mudra }}" class="mudra-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'150\'><rect width=\'100%\' height=\'150\' fill=\'%23000\'/><text x=\'50%\' y=\'50%\' font-size=\'24\' fill=\'%23DAA520\' text-anchor=\'middle\' dominant-baseline=\'middle\'>✧</text></svg>'">
+            <div class="mudra-info">
+                <h3>{{ mudra }}</h3>
+                <p class="meaning-text">{{ meaning }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

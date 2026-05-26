@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script>
+        window.AVAILABLE_MUDRAS = {{ mudra_names|tojson|safe }};
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="practice-container">
+    <!-- Camera View -->
+    <div class="viewport-wrapper">
+        <video id="webcam-feed" autoplay playsinline></video>
+        <canvas id="canvas-overlay"></canvas>
+        <div id="loading-overlay" class="analyzing">Awakening AI...</div>
+    </div>
+
+    <!-- Detection Panel -->
+    <div class="tutor-panel">
+        <div class="controls-row">
+            <h3>AI Detection</h3>
+            <div>
+                <button id="challenge-btn" class="nav-btn" style="margin-right: 10px; font-size: 0.8rem; padding: 6px 12px; cursor: pointer;">
+                    Start Challenge
+                </button>
+                <button id="voice-toggle" class="voice-btn active" title="Toggle Voice Feedback">
+                    🔊 Voice On
+                </button>
+            </div>
+        </div>
+
+        <div class="detection-card">
+            <div id="challenge-box" style="display: none; padding: 15px; border: 1px dashed var(--marigold); border-radius: 8px; margin-bottom: 20px; background: rgba(255, 153, 51, 0.1);">
+                <div class="confidence-label" style="margin-bottom: 5px;">Form this Mudra:</div>
+                <div id="challenge-target" style="font-family: 'Cinzel'; font-size: 1.8rem; color: var(--warm-ivory);">—</div>
+            </div>
+
+            <div id="detection-details">
+                <div class="detection-label">Pramanika (Detected)</div>
+                <div id="detected-mudra-name">—</div>
+                <div id="detected-mudra-meaning" class="meaning-display">—</div>
+            </div>
+            
+            <div class="clarity-meter-container" style="margin-top: 15px; text-align: left;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span class="confidence-label">Form Clarity</span>
+                    <span id="confidence-value" style="font-size: 0.8rem; color: var(--marigold); font-family: 'Cinzel';">0%</span>
+                </div>
+                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                    <div id="clarity-bar" style="width: 0%; height: 100%; background: #DAA520; transition: width 0.3s ease, background 0.3s ease;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="status-badge" class="status-badge waiting">
+            Awaiting Gesture...
+        </div>
+
+        <div class="info-box border-gold">
+            <p><strong>Guidance:</strong> Hold your hand up clearly to the camera. The tutor will automatically identify your Asamyukta Hasta and announce it in real-time.</p>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}?v=3"></script>
+{% endblock %}
